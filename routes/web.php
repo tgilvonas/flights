@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
+
+    // these are default Laravel Breeze routes which are not needed for this test task:
+    /*
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    */
+});
+
+require __DIR__.'/auth.php';
