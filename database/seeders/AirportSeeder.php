@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Airport;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Monolog\Handler\NativeMailerHandler;
 
 class AirportSeeder extends Seeder
 {
@@ -27,7 +28,7 @@ class AirportSeeder extends Seeder
                     $airport->municipality = $data[7];
                     $airport->country = $data[5];
                     $airport->save();
-                    dump($data);
+                    //dump($data);
                     $n++;
                     if ($n > 99) {
                         break;
@@ -36,5 +37,19 @@ class AirportSeeder extends Seeder
             }
         }
         fclose($fileHandle);
+
+        $airport = new Airport();
+        $airport->code = 'VNO';
+        $airport->name = 'Vilnius International Airport';
+        $airport->municipality = 'Vilnius';
+        $airport->country = 'LT';
+        $airport->save();
+
+        $airport = new Airport();
+        $airport->code = 'KUN';
+        $airport->name = 'Kaunas International Airport';
+        $airport->municipality = 'Kaunas';
+        $airport->country = 'LT';
+        $airport->save();
     }
 }
