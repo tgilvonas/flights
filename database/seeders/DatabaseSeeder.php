@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             AirportSeeder::class,
+            TimezoneSeeder::class,
+            FlightStatusSeeder::class,
         ]);
     }
 }
