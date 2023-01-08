@@ -18,6 +18,7 @@ return [
     'arrival_time' => 'Arrival time',
     'passengers' => 'Passengers',
     'create_flight' => 'Create flight',
+    'edit_flight' => 'Edit flight',
     'edit' => 'Edit',
     'delete' => 'Delete',
 ];

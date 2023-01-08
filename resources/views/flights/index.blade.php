@@ -27,12 +27,14 @@
                         </td>
                         <td>
                             <div>{{ $flight->departure_time->format('Y-m-d H:i') }}</div>
+                            <div>{{ $flight->departureTimezone->name2 ?? '' }}</div>
                         </td>
                         <td>
                             {{ $flight->airportTo->name ?? '' }}
                         </td>
                         <td>
                             <div>{{ $flight->arrival_time->format('Y-m-d H:i') }}</div>
+                            <div>{{ $flight->arrivalTimezone->name2 ?? '' }}</div>
                         </td>
                         <td>
                             {{ $flight->passengers }}

@@ -38,9 +38,9 @@ class FlightSeeder extends Seeder
             $flight->airport_from = $airport1->id;
             $flight->airport_to = $airport2->id;
             $flight->departure_time = $carbon->addDays(rand(0, 30))->addHours(rand(0, 23))->format('Y-m-d H:i:s');
-            $flight->departure_timezone = $vilniusTimezone->id;
+            $flight->departure_timezone = $newYorkTimezone->id;
             $flight->arrival_time = $carbon->addHours(rand(5, 6))->format('Y-m-d H:i:s');
-            $flight->arrival_timezone = $newYorkTimezone->id;
+            $flight->arrival_timezone = $vilniusTimezone->id;
             $flight->passengers = rand(0, 300);
             $flight->save();
         }
@@ -62,9 +62,9 @@ class FlightSeeder extends Seeder
             $flight->airport_from = $airport2->id;
             $flight->airport_to = $airport1->id;
             $flight->departure_time = $carbon->addDays(rand(0, 30))->addHours(rand(0, 23))->format('Y-m-d H:i:s');
-            $flight->departure_timezone = $newYorkTimezone->id;
+            $flight->departure_timezone = $vilniusTimezone->id;
             $flight->arrival_time = $carbon->addHours(rand(5, 6))->format('Y-m-d H:i:s');
-            $flight->arrival_timezone = $vilniusTimezone->id;
+            $flight->arrival_timezone = $newYorkTimezone->id;
             $flight->passengers = rand(0, 300);
             $flight->save();
         }
