@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\FlightsLogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,9 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     Route::resource('flights', FlightController::class);
+
+    Route::get('/flights-log', [FlightsLogController::class, 'index'])->name('flights_log.index');
+    Route::get('/flights-log/{id}/show', [FlightsLogController::class, 'show'])->name('flights_log.show');
 
     // these are default Laravel Breeze routes which are not needed for this test task:
     /*
