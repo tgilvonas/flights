@@ -2,10 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Flight extends Model
 {
-    use HasFactory;
+    public function status()
+    {
+        return $this->belongsTo(FlightStatus::class, 'status_id');
+    }
+
+    public function airportFrom()
+    {
+        return $this->belongsTo(Airport::class, 'airport_from');
+    }
+
+    public function airportTo()
+    {
+        return $this->belongsTo(Airport::class, 'airport_to');
+    }
+
+    public function departureTimezone()
+    {
+        return $this->belongsTo(Timezone::class, 'departure_timezone');
+    }
+
+    public function arrivalTimezone()
+    {
+        return $this->belongsTo(Timezone::class, 'arrival_timezone');
+    }
 }
