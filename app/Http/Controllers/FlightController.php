@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FlightRequest;
+use App\Models\Airport;
 use App\Models\Flight;
+use App\Models\FlightStatus;
+use App\Models\Timezone;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -24,24 +27,29 @@ class FlightController extends Controller
 
         return view('flights.create', [
             'flight' => $flight,
+            'airports' => Airport::query()->orderBy('name', 'asc')->get(),
+            'statuses' => FlightStatus::all(),
+            'timezones' => Timezone::query()->orderBy('name2', 'asc')->get(),
         ]);
     }
 
     public function store(FlightRequest $request)
     {
+        $flight = new Flight();
 
     }
 
     public function edit($flight)
     {
-        $flight = Flight::query()->findOrFail($flight);
-
         return view('flights.edit', [
-            'flight' => $flight,
+            'flight' => Flight::query()->findOrFail($flight),
+            'airports' => Airport::query()->orderBy('name', 'asc')->get(),
+            'statuses' => FlightStatus::all(),
+            'timezones' => Timezone::query()->orderBy('name2', 'asc')->get(),
         ]);
     }
 
-    public function update(FlightRequest $request)
+    public function update(FlightRequest $request, $flight)
     {
 
     }

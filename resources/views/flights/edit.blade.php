@@ -2,8 +2,8 @@
 
 @section('content')
     <h2>{{ __('general.edit_flight') }}</h2>
-    <form method="post">
-        @method('patch')
+    <form method="post" action="{{ route('flights.update', ['flight' => $flight->id]) }}">
+        @method('put')
         @include('flights.flight-form-fields')
     </form>
 @endsection

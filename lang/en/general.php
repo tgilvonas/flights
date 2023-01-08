@@ -24,4 +24,5 @@ return [
     'save' => 'Save',
     'cancel' => 'Cancel',
     'status' => 'Status',
+    'select' => '--- Please select ---',
 ];
