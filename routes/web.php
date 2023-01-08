@@ -20,7 +20,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
+    //Route::get('/flights', [FlightController::class, 'index'])->name('flights.index');
+    Route::resource('flights', FlightController::class);
 
     // these are default Laravel Breeze routes which are not needed for this test task:
     /*

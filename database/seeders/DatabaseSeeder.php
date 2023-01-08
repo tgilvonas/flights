@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AirportSeeder::class,
             TimezoneSeeder::class,
             FlightStatusSeeder::class,
+            FlightSeeder::class,
         ]);
     }
 }

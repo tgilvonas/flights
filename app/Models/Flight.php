@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Flight extends Model
 {
+    protected $casts = [
+        'departure_time' => 'datetime',
+        'arrival_time' => 'datetime',
+    ];
+
     public function status()
     {
         return $this->belongsTo(FlightStatus::class, 'status_id');

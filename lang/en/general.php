@@ -11,4 +11,10 @@ return [
     'email_password_reset_link' => 'Email password reset link',
     'flights' => 'Flights',
     'flights_log' => 'Flights log',
+    'there_are_no_records' => 'There are no records',
+    'airport_from' => 'Airport from',
+    'airport_to' => 'Airport to',
+    'departure_time' => 'Departure time',
+    'arrival_time' => 'Arrival time',
+    'passengers' => 'Passengers',
 ];
