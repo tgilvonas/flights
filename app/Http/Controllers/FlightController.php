@@ -16,4 +16,22 @@ class FlightController extends Controller
             'flights' => $flights,
         ]);
     }
+
+    public function create()
+    {
+        $flight = new Flight();
+
+        return view('flights.create', [
+            'flight' => $flight,
+        ]);
+    }
+
+    public function edit($flight)
+    {
+        $flight = Flight::query()->findOrFail($flight);
+
+        return view('flights.edit', [
+            'flight' => $flight,
+        ]);
+    }
 }

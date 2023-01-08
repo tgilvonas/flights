@@ -2,6 +2,11 @@
 
 @section('content')
 <div>
+    <div class="mb-3">
+        <a href="{{ route('flights.create') }}" class="btn btn-success">
+            {{ __('general.create_flight') }}
+        </a>
+    </div>
     @if($flights)
         <table class="table table-bordered table-with-bordered-cells">
             <thead>
@@ -33,7 +38,8 @@
                             {{ $flight->passengers }}
                         </td>
                         <td>
-
+                            <a href="{{ route('flights.edit', ['flight' => $flight]) }}" class="btn btn-primary">{{ __('general.edit') }}</a>
+                            <a href="" class="btn btn-danger">{{ __('general.delete') }}</a>
                         </td>
                     </tr>
                 @endforeach
