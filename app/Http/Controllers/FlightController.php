@@ -60,7 +60,9 @@ class FlightController extends Controller
 
     public function destroy($flight)
     {
-        Flight::query()->where('id', $flight)->delete();
+        $flight = Flight::query()->findOrFail($flight);
+        $flight->delete();
+
         return redirect()->route('flights.index')->with('success', __('general.flight_deleted'));
     }
 
