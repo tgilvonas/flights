@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
+            $table->string('code', 16);
             $table->foreignId('status_id')
                 ->nullable()
                 ->references('id')

@@ -6,6 +6,12 @@
     @endif
     @csrf
     <div class="mb-3 row">
+        <label class="col-md-2 col-form-label">{{ __('general.flight_code') }}</label>
+        <div class="col-md-10">
+            <input type="text" name="code" value="{{ old('code', $flight->code) }}" class="form-control form-control-sm" />
+        </div>
+    </div>
+    <div class="mb-3 row">
         <label class="col-md-2 col-form-label">{{ __('general.status') }}</label>
         <div class="col-md-10">
             <select name="status_id" class="form-control">

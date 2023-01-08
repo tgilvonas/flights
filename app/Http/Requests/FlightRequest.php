@@ -24,6 +24,7 @@ class FlightRequest extends FormRequest
     public function rules()
     {
         return [
+            'code' => 'required|max:8',
             'status_id' => 'required|numeric',
             'airport_from' => 'required|numeric',
             'airport_to' => 'required|numeric',

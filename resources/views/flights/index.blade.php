@@ -14,6 +14,7 @@
         <table class="table table-bordered table-with-bordered-cells">
             <thead>
                 <tr>
+                    <th>{{ __('general.flight_code') }}</th>
                     <th>{{ __('general.airport_from') }}</th>
                     <th>{{ __('general.departure_time') }}</th>
                     <th>{{ __('general.airport_to') }}</th>
@@ -26,6 +27,9 @@
             <tbody>
                 @foreach($flights as $flight)
                     <tr>
+                        <td>
+                            {{ $flight->code }}
+                        </td>
                         <td>
                             {{ $flight->airportFrom->name ?? '' }}
                         </td>

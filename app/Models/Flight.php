@@ -19,6 +19,7 @@ class Flight extends Model
     {
         return LogOptions::defaults()
             ->logOnly([
+                'code',
                 'departure_time',
                 'arrival_time',
                 'passengers',

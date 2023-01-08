@@ -66,6 +66,7 @@ class FlightController extends Controller
 
     protected function saveFlight(FlightRequest $request, Flight $flight)
     {
+        $flight->code = $request->code;
         $flight->status_id = $request->status_id;
         $flight->airport_from = $request->airport_from;
         $flight->airport_to = $request->airport_to;

@@ -21,6 +21,8 @@ class FlightSeeder extends Seeder
         $newYorkTimezone = Timezone::query()->where('name', '=', 'America/New_York')->first();
         $vilniusTimezone = Timezone::query()->where('name', '=', 'Europe/Vilnius')->first();
 
+        $airlineCodes = ['BA', 'AA', 'FR' ,'RK', 'AF', 'EG'];
+
         for ($i=1; $i<=20; $i++) {
             $flightStatus = FlightStatus::query()->inRandomOrder()->first();
 
@@ -34,6 +36,7 @@ class FlightSeeder extends Seeder
                 ->first();
 
             $flight = new Flight();
+            $flight->code = $airlineCodes[rand(0, 5)] . rand(1000, 9999);
             $flight->status_id = $flightStatus->id;
             $flight->airport_from = $airport1->id;
             $flight->airport_to = $airport2->id;
@@ -58,6 +61,7 @@ class FlightSeeder extends Seeder
                 ->first();
 
             $flight = new Flight();
+            $flight->code = $airlineCodes[rand(0, 5)] . rand(1000, 9999);
             $flight->status_id = $flightStatus->id;
             $flight->airport_from = $airport2->id;
             $flight->airport_to = $airport1->id;
