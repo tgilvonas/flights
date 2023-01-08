@@ -3,13 +3,32 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Flight extends Model
 {
+    use LogsActivity;
+
     protected $casts = [
         'departure_time' => 'datetime',
         'arrival_time' => 'datetime',
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'departure_time',
+                'arrival_time',
+                'passengers',
+                'status.name',
+                'airportFrom.name',
+                'airportTo.name',
+                'departureTimezone.name2',
+                'arrivalTimezone.name2',
+            ])->logOnlyDirty();
+    }
 
     public function status()
     {
