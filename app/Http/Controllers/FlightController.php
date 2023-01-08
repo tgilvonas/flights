@@ -10,17 +10,14 @@ use App\Models\Timezone;
 use Carbon\Carbon;
 use Carbon\CarbonTimeZone;
 use Illuminate\Http\Request;
+use MongoDB\Driver\Session;
 
 class FlightController extends Controller
 {
     public function index()
     {
-        $flights = Flight::query()->with(['status', 'airportFrom', 'airportTo', 'departureTimezone', 'arrivalTimezone'])
-            ->orderBy('departure_time', 'asc')
-            ->paginate(10);
-
         return view('flights.index', [
-            'flights' => $flights,
+            'flights' => Flight::getFlightsForList(),
             'timezones' => Timezone::query()->orderBy('name2', 'asc')->get(),
         ]);
     }
@@ -71,28 +68,28 @@ class FlightController extends Controller
 
     public function getListWithCalculatedTimezones(Request $request)
     {
-        $flights = Flight::query()->with(['status', 'airportFrom', 'airportTo', 'departureTimezone', 'arrivalTimezone'])
-            ->orderBy('departure_time', 'asc')
-            ->paginate(10);
+        $flights = Flight::getFlightsForList();
 
-        if (is_numeric($request->timezone_id)) {
-            $additionalTimezone = Timezone::query()->find($request->timezone_id);
-            foreach ($flights as &$flight) {
-                $additionalCarbonTz = new CarbonTimeZone($additionalTimezone->name);
-
-                $flight->additionalDepartureTime = new Carbon($flight->departure_time->format('Y-m-d H:i:s'));
-                $flight->additionalDepartureTime->subHours($flight->departureTimezone->time_diff)
-                    ->setTimezone($additionalCarbonTz);
-
-                $flight->additionalArrivalTime = new Carbon($flight->arrival_time->format('Y-m-d H:i:s'));
-                $flight->additionalArrivalTime->subHours($flight->arrivalTimezone->time_diff)
-                    ->setTimezone($additionalCarbonTz);
-            }
-        }
+        $flights = $this->calculateTimezones($request, $flights);
 
         return view('flights.partials.flights-list', [
             'flights' => $flights,
-            'additionalTimezone' => $additionalTimezone ?? null,
+        ]);
+    }
+
+    public function ajaxDelete(Request $request)
+    {
+        $flight = Flight::query()->findOrFail($request->flight_id);
+        $flight->delete();
+
+        \session()->flash('success', __('general.flight_deleted'));
+
+        $flights = Flight::getFlightsForList();
+
+        $flights = $this->calculateTimezones($request, $flights);
+
+        return view('flights.partials.flights-list', [
+            'flights' => $flights,
         ]);
     }
 
@@ -108,5 +105,26 @@ class FlightController extends Controller
         $flight->arrival_timezone = $request->arrival_timezone;
         $flight->passengers = $request->passengers;
         $flight->save();
+    }
+
+    protected function calculateTimezones($request, $flights)
+    {
+        if (is_numeric($request->timezone_id)) {
+            $additionalTimezone = Timezone::query()->find($request->timezone_id);
+            foreach ($flights as &$flight) {
+                $additionalCarbonTz = new CarbonTimeZone($additionalTimezone->name);
+
+                $flight->additionalDepartureTime = new Carbon($flight->departure_time->format('Y-m-d H:i:s'));
+                $flight->additionalDepartureTime->subHours($flight->departureTimezone->time_diff)
+                    ->setTimezone($additionalCarbonTz);
+
+                $flight->additionalArrivalTime = new Carbon($flight->arrival_time->format('Y-m-d H:i:s'));
+                $flight->additionalArrivalTime->subHours($flight->arrivalTimezone->time_diff)
+                    ->setTimezone($additionalCarbonTz);
+
+                $flight->additionalTimezone = $additionalTimezone;
+            }
+        }
+        return $flights;
     }
 }

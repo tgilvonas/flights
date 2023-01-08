@@ -28,13 +28,13 @@
                     <td>
                         <div>{{ $flight->departure_time->format('Y-m-d H:i') }}</div>
                         <div>{{ $flight->departureTimezone->name2 ?? '' }}</div>
-                        @if(isset($additionalTimezone))
+                        @if(isset($flight->additionalTimezone))
                             <hr/>
                             <div>
                                 {{ $flight->additionalDepartureTime->format('Y-m-d H:i') }}
                             </div>
                             <div>
-                                {{ $additionalTimezone->name2 ?? '' }}
+                                {{ $flight->additionalTimezone->name2 ?? '' }}
                             </div>
                         @endif
                     </td>
@@ -44,13 +44,13 @@
                     <td>
                         <div>{{ $flight->arrival_time->format('Y-m-d H:i') }}</div>
                         <div>{{ $flight->arrivalTimezone->name2 ?? '' }}</div>
-                        @if(isset($additionalTimezone))
+                        @if(isset($flight->additionalTimezone))
                             <hr/>
                             <div>
                                 {{ $flight->additionalArrivalTime->format('Y-m-d H:i') }}
                             </div>
                             <div>
-                                {{ $additionalTimezone->name2 ?? '' }}
+                                {{ $flight->additionalTimezone->name2 ?? '' }}
                             </div>
                         @endif
                     </td>

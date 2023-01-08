@@ -22,7 +22,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     Route::resource('flights', FlightController::class);
-    Route::get('/get-flights-page', [FlightController::class, 'getListWithCalculatedTimezones']);
+    Route::get('/get-flights-page', [FlightController::class, 'getListWithCalculatedTimezones'])->name('flights.get_flights_page');
+    Route::post('/ajax-delete-flight', [FlightController::class, 'ajaxDelete'])->name('flights.ajax_delete');
 
     Route::get('/flights-log', [FlightsLogController::class, 'index'])->name('flights_log.index');
     Route::get('/flights-log/{id}/show', [FlightsLogController::class, 'show'])->name('flights_log.show');

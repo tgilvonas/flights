@@ -5,12 +5,12 @@ import 'select2';
 import 'select2/dist/css/select2.min.css';
 
 $(document).ready(function(){
-
     $('select').select2();
     $('body').on('click', '.js-delete-flight', function(){
         if (confirm($(this).attr('data-confirmation-text'))) {
             let flightId = $(this).attr('data-flight-id');
-            $('form[data-flight-id="'+flightId+'"]').submit();
+            //$('form[data-flight-id="'+flightId+'"]').submit();
+            deleteFlight(flightId, $('#selected_timezone').val());
         }
     });
     $('body').on('click', 'a.page-link', function(event){
@@ -36,18 +36,17 @@ function loadFlightsPage(page, timezoneId) {
     });
 }
 
-/*
-function deleteFlight(flightId) {
+function deleteFlight(flightId, timezoneId) {
     $.ajax({
         method: 'post',
-        url: '/flights/' + flightId,
+        url: '/ajax-delete-flight',
         data: {
             _token: $('meta[name="csrf-token"]').attr('content'),
-            _method: 'delete'
+            flight_id: flightId,
+            timezone_id: timezoneId
         },
         success: function (response) {
-
+            $('.js-flights-list-content').html(response);
         }
     });
 }
-*/

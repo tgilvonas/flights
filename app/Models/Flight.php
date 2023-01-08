@@ -55,4 +55,11 @@ class Flight extends Model
     {
         return $this->belongsTo(Timezone::class, 'arrival_timezone');
     }
+
+    public static function getFlightsForList()
+    {
+        return self::query()->with(['status', 'airportFrom', 'airportTo', 'departureTimezone', 'arrivalTimezone'])
+            ->orderBy('departure_time', 'asc')
+            ->paginate(10);
+    }
 }
