@@ -67,6 +67,25 @@ class FlightController extends Controller
         return redirect()->route('flights.index')->with('success', __('general.flight_deleted'));
     }
 
+    public function getListWithCalculatedTimezones(Request $request)
+    {
+        $flights = Flight::query()->with(['status', 'airportFrom', 'airportTo', 'departureTimezone', 'arrivalTimezone'])
+            ->orderBy('departure_time', 'asc')
+            ->paginate(10);
+
+        if (is_numeric($request->timezone_id)) {
+            $additionalTimezone = Timezone::query()->find($request->timezone_id);
+            foreach ($flights as &$flight) {
+
+            }
+        }
+
+        return view('flights.partials.flights-list', [
+            'flights' => $flights,
+            'additionalTimezone' => $additionalTimezone ?? null,
+        ]);
+    }
+
     protected function saveFlight(FlightRequest $request, Flight $flight)
     {
         $flight->code = $request->code;

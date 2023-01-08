@@ -1,4 +1,7 @@
 <div class="">
+    @if(session()->get('success'))
+        <div class="alert alert-success">{{ session()->get('success') }}</div>
+    @endif
     @if(count($flights))
         <table class="table table-bordered table-with-bordered-cells">
             <thead>
@@ -20,18 +23,30 @@
                         {{ $flight->code }}
                     </td>
                     <td>
-                        {{ $flight->airportFrom->name ?? '' }}
+                        {{ $flight->airportFrom->name ?? '' }}, {{ $flight->airportFrom->country ?? '' }}
                     </td>
                     <td>
                         <div>{{ $flight->departure_time->format('Y-m-d H:i') }}</div>
                         <div>{{ $flight->departureTimezone->name2 ?? '' }}</div>
+                        @if(isset($additionalTimezone))
+                            <hr/>
+                            <div>
+                                {{ $additionalTimezone->name2 ?? '' }}
+                            </div>
+                        @endif
                     </td>
                     <td>
-                        {{ $flight->airportTo->name ?? '' }}
+                        {{ $flight->airportTo->name ?? '' }}, {{ $flight->airportTo->country ?? '' }}
                     </td>
                     <td>
                         <div>{{ $flight->arrival_time->format('Y-m-d H:i') }}</div>
                         <div>{{ $flight->arrivalTimezone->name2 ?? '' }}</div>
+                        @if(isset($additionalTimezone))
+                            <hr/>
+                            <div>
+                                {{ $additionalTimezone->name2 ?? '' }}
+                            </div>
+                        @endif
                     </td>
                     <td>
                         {{ $flight->status->name ?? '' }}

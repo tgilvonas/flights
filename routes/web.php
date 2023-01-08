@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     Route::resource('flights', FlightController::class);
+    Route::get('/get-flights-page', [FlightController::class, 'getListWithCalculatedTimezones']);
 
     Route::get('/flights-log', [FlightsLogController::class, 'index'])->name('flights_log.index');
     Route::get('/flights-log/{id}/show', [FlightsLogController::class, 'show'])->name('flights_log.show');

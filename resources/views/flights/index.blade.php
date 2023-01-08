@@ -7,9 +7,6 @@
             {{ __('general.create_flight') }}
         </a>
     </div>
-    @if(session()->get('success'))
-        <div class="alert alert-success">{{ session()->get('success') }}</div>
-    @endif
     <div class="mb-3 row">
         <label class="col-md-2 col-form-label col-sm-12">{{ __('general.timezone') }}</label>
         <div class="col-md-10 col-sm-12">
@@ -23,6 +20,8 @@
             </select>
         </div>
     </div>
-    @include('flights.partials.flights-list')
+    <div class="js-flights-list-content">
+        @include('flights.partials.flights-list')
+    </div>
 </div>
 @endsection
