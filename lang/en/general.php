@@ -30,4 +30,5 @@ return [
     'flight_created' => 'Flight created',
     'flight_updated' => 'Flight updated',
     'flight_deleted' => 'Flight deleted',
+    'are_you_sure_you_want_to_delete_this_flight' => 'Are you sure you want to delete this flight?',
 ];

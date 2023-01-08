@@ -50,7 +50,7 @@
                             <a href="{{ route('flights.edit', ['flight' => $flight]) }}" class="btn btn-primary">
                                 {{ __('general.edit') }}
                             </a>
-                            <button class="btn btn-danger js-delete-flight" data-flight-id="{{ $flight->id }}">
+                            <button class="btn btn-danger js-delete-flight" data-flight-id="{{ $flight->id }}" data-confirmation-text="{{ __('general.are_you_sure_you_want_to_delete_this_flight') }}">
                                 {{ __('general.delete') }}
                             </button>
                             <form method="post" action="{{ route('flights.destroy', ['flight' => $flight]) }}" data-flight-id="{{ $flight->id }}">
