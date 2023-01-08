@@ -38,4 +38,6 @@ return [
     'datetime' => 'Date/time',
     'back' => 'Back',
     'fields' => 'Fields',
+    'local_timezones' => 'Local timezones',
+    'timezone' => 'Timezone',
 ];

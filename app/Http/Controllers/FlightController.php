@@ -19,6 +19,7 @@ class FlightController extends Controller
 
         return view('flights.index', [
             'flights' => $flights,
+            'timezones' => Timezone::query()->orderBy('name2', 'asc')->get(),
         ]);
     }
 

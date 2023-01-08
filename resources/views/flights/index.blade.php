@@ -10,6 +10,19 @@
     @if(session()->get('success'))
         <div class="alert alert-success">{{ session()->get('success') }}</div>
     @endif
+    <div class="mb-3 row">
+        <label class="col-md-2 col-form-label col-sm-12">{{ __('general.timezone') }}</label>
+        <div class="col-md-10 col-sm-12">
+            <select name="timezone" id="selected_timezone" class="form-control">
+                <option value="">{{ __('general.local_timezones') }}</option>
+                @foreach($timezones as $timezone)
+                    <option value="{{ $timezone->id }}">
+                        {{ $timezone->name2 }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
     @if(count($flights))
         <table class="table table-bordered table-with-bordered-cells">
             <thead>
@@ -51,10 +64,10 @@
                             {{ $flight->passengers }}
                         </td>
                         <td>
-                            <a href="{{ route('flights.edit', ['flight' => $flight]) }}" class="btn btn-primary">
+                            <a href="{{ route('flights.edit', ['flight' => $flight]) }}" class="btn btn-primary mb-1">
                                 {{ __('general.edit') }}
                             </a>
-                            <button class="btn btn-danger js-delete-flight" data-flight-id="{{ $flight->id }}" data-confirmation-text="{{ __('general.are_you_sure_you_want_to_delete_this_flight') }}">
+                            <button class="btn btn-danger js-delete-flight mb-1" data-flight-id="{{ $flight->id }}" data-confirmation-text="{{ __('general.are_you_sure_you_want_to_delete_this_flight') }}">
                                 {{ __('general.delete') }}
                             </button>
                             <form method="post" action="{{ route('flights.destroy', ['flight' => $flight]) }}" data-flight-id="{{ $flight->id }}">
