@@ -58,9 +58,10 @@ class FlightController extends Controller
         return redirect()->route('flights.index')->with('success', __('general.flight_updated'));
     }
 
-    public function delete()
+    public function delete($flight)
     {
-
+        Flight::query()->where('id', $flight)->delete();
+        return redirect()->route('flights.index')->with('success', __('general.flight_deleted'));
     }
 
     protected function saveFlight(FlightRequest $request, Flight $flight)

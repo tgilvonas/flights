@@ -29,4 +29,5 @@ return [
     'arrival_timezone' => 'Arrival timezone',
     'flight_created' => 'Flight created',
     'flight_updated' => 'Flight updated',
+    'flight_deleted' => 'Flight deleted',
 ];

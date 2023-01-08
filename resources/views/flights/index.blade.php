@@ -47,8 +47,16 @@
                             {{ $flight->passengers }}
                         </td>
                         <td>
-                            <a href="{{ route('flights.edit', ['flight' => $flight]) }}" class="btn btn-primary">{{ __('general.edit') }}</a>
-                            <a href="" class="btn btn-danger">{{ __('general.delete') }}</a>
+                            <a href="{{ route('flights.edit', ['flight' => $flight]) }}" class="btn btn-primary">
+                                {{ __('general.edit') }}
+                            </a>
+                            <button class="btn btn-danger js-delete-flight" data-flight-id="{{ $flight->id }}">
+                                {{ __('general.delete') }}
+                            </button>
+                            <form method="post" action="{{ route('flights.destroy', ['flight' => $flight]) }}" data-flight-id="{{ $flight->id }}">
+                                @csrf
+                                @method('delete')
+                            </form>
                         </td>
                     </tr>
                 @endforeach
