@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('name_normalized');
             $table->string('name2');
+            $table->integer('time_diff');
             $table->timestamps();
         });
     }

@@ -31,6 +31,9 @@
                         @if(isset($additionalTimezone))
                             <hr/>
                             <div>
+                                {{ $flight->additionalDepartureTime->format('Y-m-d H:i') }}
+                            </div>
+                            <div>
                                 {{ $additionalTimezone->name2 ?? '' }}
                             </div>
                         @endif
@@ -43,6 +46,9 @@
                         <div>{{ $flight->arrivalTimezone->name2 ?? '' }}</div>
                         @if(isset($additionalTimezone))
                             <hr/>
+                            <div>
+                                {{ $flight->additionalArrivalTime->format('Y-m-d H:i') }}
+                            </div>
                             <div>
                                 {{ $additionalTimezone->name2 ?? '' }}
                             </div>

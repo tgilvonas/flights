@@ -7,6 +7,8 @@ use App\Models\Airport;
 use App\Models\Flight;
 use App\Models\FlightStatus;
 use App\Models\Timezone;
+use Carbon\Carbon;
+use Carbon\CarbonTimeZone;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -76,7 +78,15 @@ class FlightController extends Controller
         if (is_numeric($request->timezone_id)) {
             $additionalTimezone = Timezone::query()->find($request->timezone_id);
             foreach ($flights as &$flight) {
+                $additionalCarbonTz = new CarbonTimeZone($additionalTimezone->name);
 
+                $flight->additionalDepartureTime = new Carbon($flight->departure_time->format('Y-m-d H:i:s'));
+                $flight->additionalDepartureTime->subHours($flight->departureTimezone->time_diff)
+                    ->setTimezone($additionalCarbonTz);
+
+                $flight->additionalArrivalTime = new Carbon($flight->arrival_time->format('Y-m-d H:i:s'));
+                $flight->additionalArrivalTime->subHours($flight->arrivalTimezone->time_diff)
+                    ->setTimezone($additionalCarbonTz);
             }
         }
 
