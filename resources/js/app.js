@@ -15,7 +15,8 @@ $(document).ready(function(){
     });
     $('body').on('click', 'a.page-link', function(event){
         event.preventDefault();
-        loadFlightsPage($(this).text(), $('#selected_timezone').val());
+        let url = new URL($(this).attr('href'));
+        loadFlightsPage(url.searchParams.get('page'), $('#selected_timezone').val());
     });
     $('#selected_timezone').change(function(){
         loadFlightsPage($('.page-item.active span.page-link').text(), $('#selected_timezone').val());
