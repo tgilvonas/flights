@@ -2,7 +2,7 @@
 
 @section('content')
     <h2>{{ __('general.flights_log') }}</h2>
-    @if($logs)
+    @if(count($logs))
         <table class="table table-bordered table-with-bordered-cells">
             <thead>
             <tr>

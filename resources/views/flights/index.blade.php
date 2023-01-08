@@ -10,7 +10,7 @@
     @if(session()->get('success'))
         <div class="alert alert-success">{{ session()->get('success') }}</div>
     @endif
-    @if($flights)
+    @if(count($flights))
         <table class="table table-bordered table-with-bordered-cells">
             <thead>
                 <tr>
