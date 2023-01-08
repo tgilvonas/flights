@@ -23,7 +23,9 @@
                         {{ $log->causer->name ?? '' }}
                     </td>
                     <td>
-                        {{ $log->event }}
+                        <span class="badge {{ $log->event }} opacity-75">
+                            {{ ucfirst($log->event) }}
+                        </span>
                     </td>
                     <td>
                         {{ $log->created_at->format('Y-m-d H:i:s') }}

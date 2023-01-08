@@ -3,3 +3,31 @@
 .select2 {
     max-width: 100% !important;
 }
+
+.badge {
+    &.created {
+        background-color: var(--bs-green);
+    }
+    &.updated {
+        background-color: var(--bs-blue);
+    }
+    &.deleted {
+        background-color: var(--bs-red);
+    }
+
+    &.scheduled {
+        background-color: var(--bs-blue);
+    }
+    &.canceled {
+        background-color: var(--bs-red);
+    }
+    &.delayed {
+        background-color: var(--bs-orange);
+    }
+    &.departured {
+        background-color: var(--bs-teal);
+    }
+    &.arrived {
+        background-color: var(--bs-green);
+    }
+}

@@ -55,7 +55,9 @@
                         @endif
                     </td>
                     <td>
-                        {{ $flight->status->name ?? '' }}
+                        <span class="badge {{ strtolower($flight->status->name ?? '') }} opacity-75">
+                            {{ $flight->status->name ?? '' }}
+                        </span>
                     </td>
                     <td>
                         {{ $flight->passengers }}
