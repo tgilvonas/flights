@@ -14,6 +14,7 @@ class FlightController extends Controller
     public function index()
     {
         $flights = Flight::query()->with(['status', 'airportFrom', 'airportTo', 'departureTimezone', 'arrivalTimezone'])
+            ->orderBy('departure_time', 'asc')
             ->paginate(10);
 
         return view('flights.index', [
@@ -36,7 +37,8 @@ class FlightController extends Controller
     public function store(FlightRequest $request)
     {
         $flight = new Flight();
-
+        $this->saveFlight($request, $flight);
+        return redirect()->route('flights.index')->with('success', __('general.flight_created'));
     }
 
     public function edit($flight)
@@ -51,11 +53,26 @@ class FlightController extends Controller
 
     public function update(FlightRequest $request, $flight)
     {
-
+        $flight = Flight::query()->findOrFail($flight);
+        $this->saveFlight($request, $flight);
+        return redirect()->route('flights.index')->with('success', __('general.flight_updated'));
     }
 
     public function delete()
     {
 
+    }
+
+    protected function saveFlight(FlightRequest $request, Flight $flight)
+    {
+        $flight->status_id = $request->status_id;
+        $flight->airport_from = $request->airport_from;
+        $flight->airport_to = $request->airport_to;
+        $flight->departure_time = $request->departure_time;
+        $flight->departure_timezone = $request->departure_timezone;
+        $flight->arrival_time = $request->arrival_time;
+        $flight->arrival_timezone = $request->arrival_timezone;
+        $flight->passengers = $request->passengers;
+        $flight->save();
     }
 }

@@ -7,8 +7,8 @@
             {{ __('general.create_flight') }}
         </a>
     </div>
-    @if(isset($success) && !empty($success))
-        <div class="alert alert-success">{{ $success }}</div>
+    @if(session()->get('success'))
+        <div class="alert alert-success">{{ session()->get('success') }}</div>
     @endif
     @if($flights)
         <table class="table table-bordered table-with-bordered-cells">

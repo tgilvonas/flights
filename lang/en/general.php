@@ -25,4 +25,8 @@ return [
     'cancel' => 'Cancel',
     'status' => 'Status',
     'select' => '--- Please select ---',
+    'departure_timezone' => 'Departure timezone',
+    'arrival_timezone' => 'Arrival timezone',
+    'flight_created' => 'Flight created',
+    'flight_updated' => 'Flight updated',
 ];
