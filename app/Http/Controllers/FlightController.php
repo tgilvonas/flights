@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FlightRequest;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,11 @@ class FlightController extends Controller
         ]);
     }
 
+    public function store(FlightRequest $request)
+    {
+
+    }
+
     public function edit($flight)
     {
         $flight = Flight::query()->findOrFail($flight);
@@ -33,5 +39,15 @@ class FlightController extends Controller
         return view('flights.edit', [
             'flight' => $flight,
         ]);
+    }
+
+    public function update(FlightRequest $request)
+    {
+
+    }
+
+    public function delete()
+    {
+
     }
 }

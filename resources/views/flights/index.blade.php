@@ -7,6 +7,9 @@
             {{ __('general.create_flight') }}
         </a>
     </div>
+    @if(isset($success) && !empty($success))
+        <div class="alert alert-success">{{ $success }}</div>
+    @endif
     @if($flights)
         <table class="table table-bordered table-with-bordered-cells">
             <thead>
@@ -15,6 +18,7 @@
                     <th>{{ __('general.departure_time') }}</th>
                     <th>{{ __('general.airport_to') }}</th>
                     <th>{{ __('general.arrival_time') }}</th>
+                    <th>{{ __('general.status') }}</th>
                     <th>{{ __('general.passengers') }}</th>
                     <th></th>
                 </tr>
@@ -35,6 +39,9 @@
                         <td>
                             <div>{{ $flight->arrival_time->format('Y-m-d H:i') }}</div>
                             <div>{{ $flight->arrivalTimezone->name2 ?? '' }}</div>
+                        </td>
+                        <td>
+                            {{ $flight->status->name ?? '' }}
                         </td>
                         <td>
                             {{ $flight->passengers }}

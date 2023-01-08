@@ -18,6 +18,7 @@ class FlightStatusSeeder extends Seeder
             'Scheduled',
             'Canceled',
             'Delayed',
+            'Departured',
             'Arrived',
         ];
 

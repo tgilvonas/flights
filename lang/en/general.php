@@ -21,4 +21,7 @@ return [
     'edit_flight' => 'Edit flight',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'status' => 'Status',
 ];
