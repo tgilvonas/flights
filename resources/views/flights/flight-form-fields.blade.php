@@ -35,7 +35,7 @@
     <div class="mb-3 row">
         <label class="col-md-2 col-form-label">{{ __('general.departure_time') }}</label>
         <div class="col-md-10">
-            <input type="datetime-local" name="departure_time" value="{{ old('departure_time', $flight->departure_time) }}" class="form-control" />
+            <input type="datetime-local" name="departure_time" value="{{ old('departure_time', $flight->departure_time) }}" class="form-control form-control-sm" />
         </div>
     </div>
     <div class="mb-3 row">
@@ -68,7 +68,7 @@
     <div class="mb-3 row">
         <label class="col-md-2 col-form-label">{{ __('general.arrival_time') }}</label>
         <div class="col-md-10">
-            <input type="datetime-local" name="arrival_time" value="{{ old('arrival_time', $flight->arrival_time) }}" class="form-control" />
+            <input type="datetime-local" name="arrival_time" value="{{ old('arrival_time', $flight->arrival_time) }}" class="form-control form-control-sm" />
         </div>
     </div>
     <div class="mb-3 row">
@@ -88,7 +88,7 @@
     <div class="mb-3 row">
         <label class="col-md-2 col-form-label">{{ __('general.passengers') }}</label>
         <div class="col-md-10">
-            <input type="number" min="0" max="500" step="1" name="passengers" value="{{ old('passengers', $flight->passengers) }}" class="form-control" />
+            <input type="number" min="0" max="500" step="1" name="passengers" value="{{ old('passengers', $flight->passengers) }}" class="form-control form-control-sm" />
         </div>
     </div>
     <div class="text-end mt-3 mb-3">
