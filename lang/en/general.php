@@ -36,4 +36,6 @@ return [
     'event' => 'Event',
     'flight_code' => 'Flight code',
     'datetime' => 'Date/time',
+    'back' => 'Back',
+    'fields' => 'Fields',
 ];

@@ -18,8 +18,10 @@ class FlightsLogController extends Controller
         ]);
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('flights_log.show');
+        return view('flights_log.show', [
+            'log' => ActivityLog::query()->findOrFail($id),
+        ]);
     }
 }
