@@ -45,7 +45,7 @@ class FlightSeeder extends Seeder
             $flight->arrival_time = $carbon->addHours(rand(5, 6))->format('Y-m-d H:i:s');
             $flight->arrival_timezone = $vilniusTimezone->id;
             $flight->passengers = rand(0, 300);
-            $flight->save();
+            $flight->saveQuietly();
         }
 
         for ($i=1; $i<=20; $i++) {
@@ -70,7 +70,7 @@ class FlightSeeder extends Seeder
             $flight->arrival_time = $carbon->addHours(rand(5, 6))->format('Y-m-d H:i:s');
             $flight->arrival_timezone = $newYorkTimezone->id;
             $flight->passengers = rand(0, 300);
-            $flight->save();
+            $flight->saveQuietly();
         }
     }
 }
