@@ -17,7 +17,7 @@
             @foreach($logs as $log)
                 <tr>
                     <td>
-                        {{ $log->subject->code ?? '' }}
+                        {{ $log->subject->code ?? json_decode($log->properties)->old->code ?? '' }}
                     </td>
                     <td>
                         {{ $log->causer->name ?? '' }}
